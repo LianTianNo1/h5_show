@@ -1,0 +1,8 @@
+<view class="content"><image class="logo" src="/static/logo.png" style="width: 385rpx; height: 394rpx; display: block; box-sizing: border-box"></image><view class="text-area"><text class="title"></text></view></view>
+<text style="position: relative; left: 347rpx; top: 129rpx">文本</text>
+<view style="position: relative; width: 100%; background: #d3d3d3; height: 100px; left: 0rpx; top: 171rpx">
+  <text style="position:relative;">文本</text>
+  </view>
+<image style="position: relative; left: 86rpx; top: -189rpx" src="https://mmbiz.qpic.cn/mmbiz_png/icTdbqWNOwNQ0ia79enzYJBsZ3CIkLQGe39qeOxbpT9oM9KaCthzBa0PF75xzBGjZQGlM69TDggxpNX7ACibCjjtw/0?wx_fmt=png&t=1614824466" />
+
+
