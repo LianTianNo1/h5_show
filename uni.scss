@@ -13,7 +13,8 @@
  */
 
 /* 颜色变量 */
-
+@import "uview-ui/theme.scss"; 
+@import "uview-ui/index.scss";
 /* 行为相关颜色 */
 $uni-color-primary: #007aff;
 $uni-color-success: #4cd964;

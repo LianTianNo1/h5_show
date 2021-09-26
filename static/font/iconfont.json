@@ -1,0 +1,44 @@
+{
+  "id": "2835333",
+  "name": "货币前端",
+  "font_family": "custom-icon",
+  "css_prefix_text": "custom-icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3864317",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "4893444",
+      "name": "勿扰模式",
+      "font_class": "wuraomoshi",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "10450961",
+      "name": "paper报纸",
+      "font_class": "paper",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "21704040",
+      "name": "赠送",
+      "font_class": "zengsong",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "21905889",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    }
+  ]
+}
