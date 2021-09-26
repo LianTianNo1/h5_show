@@ -1,9 +1,9 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title"></text>
+	<view class="box">
+		<view class="head_tip">
+			监控设置
 		</view>
+		
 	</view>
 </template>
 
