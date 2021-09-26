@@ -20,8 +20,6 @@
 					</view>
 				</view>
 			</view>
-
-
 		</view>
 	</view>
 </template>
@@ -84,6 +82,7 @@
 
 <style lang="scss">
 	.box {
+		font-family: "arial narrow";
 		width: 100vw;
 		height: 100vh;
 		background-color: rgb(234, 234, 234);
@@ -151,6 +150,7 @@
 					text::first-letter {
 						font-size: 38rpx;
 						font-weight: bold;
+						letter-spacing: 6rpx;
 					}
 
 					.item_bottom_right {
