@@ -4,7 +4,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		// 存放用户的信息
-		userInfo: {}
+		userInfo: {},
+		baseUrl:'http://localhost:8080',
 	},
 	mutations: {
 		saveUsuerInfo(state, params) {

@@ -7,7 +7,8 @@
 			【Fly量化】服务号监控设置，您可以进入具体的功能界面，选择自己关注的信息开启提醒
 		</view>
 		<view class="content u-m-t-10">
-			<view @click="gotoUrl(item.url)" v-for="(item,index) in listData" class="content_item">
+			<!-- 6个位置 -->
+			<view :key="item.id" @click="gotoUrl(item.url)" v-for="(item,index) in listData" class="content_item">
 				<view class="item_top">
 					<text>{{item.title}}</text>
 					<u-icon :name="item.icon" color="white" size="48"></u-icon>
@@ -20,6 +21,7 @@
 					</view>
 				</view>
 			</view>
+			<!-- 6个位置结束 -->
 		</view>
 	</view>
 </template>
@@ -29,42 +31,48 @@
 		data() {
 			return {
 				listData: [{
+						id: 1,
 						title: '公告监控',
-						url: '/gonggao',
+						url: '../announcement/announcement',
 						icon: 'volume-up',
 						name: 'Notice'
 					},
 					{
+						id: 2,
 						title: '币种监控',
-						url: '/gonggao',
+						url: '../currency/currency',
 						icon: 'rmb-circle',
 						name: 'Coin'
 					},
 					{
+						id: 3,
 						title: '市场监控',
-						url: '/gonggao',
+						url: '../market/market',
 						icon: 'photo',
 						name: 'Market'
 					},
 					{
+						id: 4,
 						title: '合约大V',
 						url: '/gonggao',
 						icon: 'level',
 						name: 'Firm-Contract'
 					},
 					{
+						id: 5,
 						title: '推特监控',
 						url: '/gonggao',
 						icon: 'twitter',
 						name: 'Twitter'
 					},
 					{
+						id: 6,
 						title: '后期开发',
 						url: '/gonggao',
 						icon: 'clock',
 						name: 'Null'
 					},
-	
+
 				]
 			}
 		},
@@ -74,13 +82,20 @@
 		methods: {
 			// 跳转具体链接
 			gotoUrl(url) {
-
+				console.log(url);
+				// 跳转页面
+				uni.navigateTo({
+					url,
+					success(res) {
+						console.log(res);
+					}
+				})
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.box {
 		font-family: "arial narrow";
 		width: 100vw;
@@ -139,6 +154,7 @@
 					display: flex;
 					justify-content: space-between;
 					position: relative;
+
 					text {
 						color: white;
 						display: block;

@@ -10,11 +10,11 @@
 			}
 		},
 		computed: {
-			...mapState(['userInfo']),
+			...mapState(['userInfo','baseUrl']),
 			// 目标地址
-			baseUrl() {
-				return 'http://localhost:8080'
-			}
+			// baseUrl() {
+			// 	return 'http://localhost:8080'
+			// }
 		},
 		methods: {
 			...mapMutations(['saveUsuerInfo']),

@@ -25,7 +25,35 @@
 
 		}
 
-	],
+	    ,{
+            "path" : "pages/currency/currency",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "项目监控",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
+        ,{
+            "path" : "pages/announcement/announcement",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公告监控",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/market/market",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "市场监控",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationStyle": "custom", // 设置成 custom 即可解决微信H5双标题的问题
 		"navigationBarTextStyle": "black",
