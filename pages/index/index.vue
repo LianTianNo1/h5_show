@@ -82,7 +82,7 @@
 		methods: {
 			// 跳转具体链接
 			gotoUrl(url) {
-				console.log(url);
+				// console.log(url);
 				// 跳转页面
 				uni.navigateTo({
 					url,

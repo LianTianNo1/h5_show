@@ -21,6 +21,7 @@
 								<u-tag :bg-color="handleColor(item2)" class="u-m-r-10" :key="index2"
 									v-for="(item2,index2) in JSON.parse(item.tags) " :text="item2" mode="dark" />
 							</view>
+							
 							<view class="u-order-time">{{item.create_time}}</view>
 						</view>
 					</template>
