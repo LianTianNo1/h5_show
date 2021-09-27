@@ -25,13 +25,13 @@
 					id: 1,
 					// 项目API
 					name: 'huobi',
-					value:'huobi_currency'
+					value: 'huobi_currency',
 					// 使用情况
 					isActive: false
 				}]
 			}
 		},
-		computed:{
+		computed: {
 			...mapState(['userInfo', 'baseUrl', 'userInfoMysql']),
 		},
 		methods: {
@@ -48,32 +48,63 @@
 					},
 					method: 'POST',
 					success(res) {
-						console.log('获取用户信息返回的结果', res);
 						if (res.statusCode !== 200) return uni.showToast({
 							title: '修改订阅信息失败'
 						})
-						// 勿扰状态为数据库状态
-						// that.status = JSON.parse(res.data[0].status);
-						// // 保存mysql 中用户的数据
-						// that.saveUsuerInfoMysql(res.data[0])
+
 					},
-					fail(err) {
-						console.log(err);
+				})
+			},
+			// 获取用户在数据中的数据
+			getInfo(that, openid) {
+				uni.request({
+					url: that.baseUrl + '/getUserAllInfo',
+					data: {
+						openid
+					},
+					method: 'POST',
+					success(res) {
+						console.log('更新后获取用户信息', res);
+						if (res.statusCode !== 200) return uni.showToast({
+							title: '获取用户信息失败'
+						})
+						// 保存mysql 中用户的数据
+						that.saveUsuerInfoMysql(res.data[0])
 					}
 				})
 			}
+		},
+		onUnload() {
+			console.log('页面销毁更新数据');
+			// 更新数据本地
+			this.getInfo(this, this.userInfo.openid)
 		},
 		// 页面每次出现在屏幕上都触发
 		async onShow() {
 			// 先判断缓存中是否有信息
 			let info = uni.getStorageSync('userInfo')
 			if (info) {
-				console.log('缓存中存在用户信息不用再请求', JSON.parse(info));
-				info = JSON.parse(info)
 				// 保存到vuex中
-				this.saveUsuerInfo(info)
+				this.saveUsuerInfo(JSON.parse(info))
 			}
 			
+			// 修改状态
+			// 1.读取缓存
+			let infoMysql = JSON.parse(uni.getStorageSync('userInfoMysql'))
+			// console.log('infoMysql--->',infoMysql);
+			// 2.判断是否为空，为空不进行操作
+			if (infoMysql.subscribelist) {
+				// console.log('进来修改状态');
+				// 3.获取到订阅的列表
+				const subscribelist =JSON.parse(infoMysql.subscribelist);
+				// 4.找出订阅的项目，修改状态
+				const subSet = new Set(subscribelist);
+				this.currencyList.forEach(item=>{
+					if(subSet.has(item.value)){
+						item.isActive = true;
+					}
+				})
+			}
 		},
 	}
 </script>

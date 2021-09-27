@@ -65,10 +65,8 @@
 			// 先判断缓存中是否有信息
 			let info = uni.getStorageSync('userInfo')
 			if (info) {
-				console.log('缓存中存在用户信息不用再请求', JSON.parse(info));
-				info = JSON.parse(info)
 				// 保存到vuex中
-				this.saveUsuerInfo(info)
+				this.saveUsuerInfo(JSON.parse(info))
 			}
 			// 获取用户的信息
 			await this.getInfo();
