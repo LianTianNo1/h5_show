@@ -4,7 +4,7 @@
 			公告中心
 		</view>
 		<view class="wrap">
-			<u-time-line>
+			<u-time-line v-if="announceList.length!==0">
 
 				<!-- 公告信息展示 -->
 				<u-time-line-item :key="item.id" v-for="(item,index) in announceList">
@@ -27,6 +27,7 @@
 					</template>
 				</u-time-line-item>
 			</u-time-line>
+			<u-empty v-else text="暂时没有新的公告消息" mode="list"></u-empty>
 			<!-- 公告信息展示结束 -->
 
 		</view>
@@ -79,9 +80,15 @@
 				})
 			}
 		},
+		onShow(){
+			// 页面每次出现都先判断公告信息是否存在，存在就不用重新获取获取下公告消息
+			if(!this.announceList.length){
+				// 开始就获取下公告消息
+				this.getAnnounceList();
+			}
+			
+		},
 		onLoad() {
-			// 开始就获取下公告消息
-			this.getAnnounceList();
 			// 初始化颜色标签对应颜色
 			this.initTagColor();
 		}

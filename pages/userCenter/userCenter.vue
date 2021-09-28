@@ -70,7 +70,10 @@
 			}
 			// 获取用户的信息
 			await this.getInfo();
-			
+			setTimeout(() => {
+				this.status = JSON.parse(this.userInfoMysql.status)
+				console.log('this.userInfoMysql.status',this.userInfoMysql.status);
+			},100)
 		},
 		onLoad() {
 			
@@ -97,7 +100,7 @@
 						})
 						// 成功后更新数据
 						await that.getInfo();
-						that.status = JSON.parse(that.userInfoMysql.status)
+						// that.status = JSON.parse(that.userInfoMysql.status)
 					},
 					fail(err) {
 						console.log(err);

@@ -22,13 +22,23 @@
 		data() {
 			return {
 				currencyList: [{
-					id: 1,
-					// 项目API
-					name: 'huobi',
-					value: 'huobi_currency',
-					// 使用情况
-					isActive: false
-				}]
+						id: 1,
+						// 项目API
+						name: 'huobi',
+						value: 'huobi_currency',
+						// 使用情况
+						isActive: false
+					},
+
+					// {
+					// 	id: 2,
+					// 	// 项目API
+					// 	name: 'gate',
+					// 	value: 'gate_currency',
+					// 	// 使用情况
+					// 	isActive: false
+					// }
+				]
 			}
 		},
 		computed: {
@@ -87,7 +97,7 @@
 				// 保存到vuex中
 				this.saveUsuerInfo(JSON.parse(info))
 			}
-			
+
 			// 修改状态
 			// 1.读取缓存
 			let infoMysql = JSON.parse(uni.getStorageSync('userInfoMysql'))
@@ -96,11 +106,11 @@
 			if (infoMysql.subscribelist) {
 				// console.log('进来修改状态');
 				// 3.获取到订阅的列表
-				const subscribelist =JSON.parse(infoMysql.subscribelist);
+				const subscribelist = JSON.parse(infoMysql.subscribelist);
 				// 4.找出订阅的项目，修改状态
 				const subSet = new Set(subscribelist);
-				this.currencyList.forEach(item=>{
-					if(subSet.has(item.value)){
+				this.currencyList.forEach(item => {
+					if (subSet.has(item.value)) {
 						item.isActive = true;
 					}
 				})
