@@ -57,14 +57,31 @@
 			}
 		},
 		onLaunch: function() {
-			// console.log('是否启动');
-			// 先判断缓存中是否有信息
+			// if (this.isCode()) {
+			// 	this.getUserInfo()
+			// } else {
+			// 	// 重新获取
+			// 	this.getCode();
+			// 	this.getUserInfo()
+			// }
+			先判断缓存中是否有信息
 			let info = uni.getStorageSync('userInfo')
-			if (info) {
+			if (info&&info.length>2) {
+				// // 判断是否有code，用来获取用户信息			
 				console.log('缓存中存在用户信息不用再请求', JSON.parse(info));
 				info = JSON.parse(info)
 				// 保存到vuex中
 				this.saveUsuerInfo(info)
+				
+				
+				// 判断是否有code，用来获取用户信息
+				if (this.isCode()) {
+					this.getUserInfo()
+				} else {
+					// 重新获取
+					this.getCode();
+				}
+				
 			} else {
 				// 判断是否有code，用来获取用户信息
 				if (this.isCode()) {
@@ -72,6 +89,7 @@
 				} else {
 					// 重新获取
 					this.getCode();
+					// this.getUserInfo()
 				}
 			}
 		},

@@ -6,7 +6,8 @@ const store = new Vuex.Store({
 		// 存放用户的信息
 		userInfo: {},
 		userInfoMysql: {},
-		baseUrl: 'http://localhost:8080',
+		// baseUrl: 'http://localhost:8080',
+		baseUrl: 'http://www.flydoge.fun:8080',
 	},
 	mutations: {
 		saveUsuerInfo(state, params) {
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
 			// console.log('需要保存的数据:', params);
 			// 同时存到/更新缓存中
 			uni.setStorageSync('userInfoMysql', JSON.stringify(params));
+			
 		}
 	},
 	actions: {}

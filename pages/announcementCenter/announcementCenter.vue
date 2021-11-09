@@ -11,18 +11,22 @@
 					<template v-slot:content>
 						<view>
 							<view class="title u-m-t-20 u-m-b-20">{{item.type}}</view>
-							<view class="u-order-desc u-m-t-20 u-m-b-20">{{Object.keys(JSON.parse(item.data))[0]}}
+							<view class="u-order-desc u-m-t-20 u-m-b-20" v-if="item.annocedata && item.annocedata.length>2">
+								{{Object.keys(JSON.parse(item.annocedata))[0]}}
 							</view>
-							<u-link class="u-order-desc  u-m-t-20 u-m-b-20"
-								:href="Object.values(JSON.parse(item.data))[0]">
-								{{Object.values(JSON.parse(item.data))[0]}}</u-link>
+							<view class="u-order-desc u-m-t-20 u-m-b-20" v-else>{{item.market}}交易对{{item.type}}了
+							</view>
+							<u-link class="u-order-desc  u-m-t-20 u-m-b-20" v-if="item.annocedata && item.annocedata.length>2"
+								:href="Object.values(JSON.parse(item.annocedata))[0]">
+								{{Object.values(JSON.parse(item.annocedata))[0]}}
+							</u-link>
 
 							<view class="tags u-m-t-20 u-m-b-20">
-								<u-tag :bg-color="handleColor(item2)" class="u-m-r-10" :key="index2"
-									v-for="(item2,index2) in JSON.parse(item.tags) " :text="item2" mode="dark" />
+								<u-tag :bg-color="getColor()" class="u-m-r-10" :key="index2" v-if="item2!==''"
+									v-for="(item2,index2) in item.tags.split(' ')" :text="item2" mode="dark" />
 							</view>
-							
-							<view class="u-order-time">{{item.create_time}}</view>
+
+							<view class="u-order-time">{{item.createTime}}</view>
 						</view>
 					</template>
 				</u-time-line-item>
@@ -51,16 +55,9 @@
 
 		},
 		methods: {
-			initTagColor() {
-				this.tagColor.set('公告监控', 'rgb(109,122,138)');
-				this.tagColor.set('Huobi', 'rgb(80,132,179)');
-				this.tagColor.set('Mexc', 'rgb(84,203,200)');
-				this.tagColor.set('项目监控', 'rgb(62,165,109)');
-				this.tagColor.set('Gate', 'rgb(212,41,77)');
-			},
 			// 处理标签颜色
-			handleColor(item) {
-				return this.tagColor.get(item)
+			getColor() {
+				return '#' + Math.floor(Math.random() * 0xffffff).toString(16);
 			},
 			// 获取公告消息
 			getAnnounceList() {
@@ -80,17 +77,16 @@
 				})
 			}
 		},
-		onShow(){
+		onShow() {
 			// 页面每次出现都先判断公告信息是否存在，存在就不用重新获取获取下公告消息
-			if(!this.announceList.length){
+			if (!this.announceList.length) {
 				// 开始就获取下公告消息
 				this.getAnnounceList();
 			}
-			
+
 		},
 		onLoad() {
-			// 初始化颜色标签对应颜色
-			this.initTagColor();
+
 		}
 	}
 </script>

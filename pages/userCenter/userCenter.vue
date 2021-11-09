@@ -66,14 +66,12 @@
 			let info = uni.getStorageSync('userInfo')
 			if (info) {
 				// 保存到vuex中
+				console.log('保存到userinfo vuex中：',info,'类型：',typeof info);
 				this.saveUsuerInfo(JSON.parse(info))
 			}
 			// 获取用户的信息
 			await this.getInfo();
-			setTimeout(() => {
-				this.status = JSON.parse(this.userInfoMysql.status)
-				console.log('this.userInfoMysql.status',this.userInfoMysql.status);
-			},100)
+
 		},
 		onLoad() {
 			
@@ -83,7 +81,15 @@
 			...mapMutations(['saveUsuerInfoMysql', 'saveUsuerInfo']),
 			// 是否打开勿扰
 			async changeStatus() {
-				let tempStatus = !JSON.parse(this.userInfoMysql.status)
+				console.log('2>>是否打开勿扰模式：',this.userInfoMysql.status,'类型：',typeof  this.userInfoMysql.status);
+				let tempStatus
+				if(this.userInfoMysql.status === 0){
+					tempStatus = 1
+				}else{
+					tempStatus = 0
+				}
+
+				console.log('2>>是否打开勿扰模式：',tempStatus);
 				console.log('数据库保存的状态',this.userInfoMysql.status,'我将要改变的状态',tempStatus);
 				const that = this;
 				const openid = this.userInfo.openid;
@@ -100,7 +106,6 @@
 						})
 						// 成功后更新数据
 						await that.getInfo();
-						// that.status = JSON.parse(that.userInfoMysql.status)
 					},
 					fail(err) {
 						console.log(err);
@@ -126,7 +131,10 @@
 							title: '获取用户信息失败'
 						})
 						// 勿扰状态为数据库状态
-						that.status = JSON.parse(res.data[0].status);
+						// console.log('当前的数据res.data[0]：',res.data[0]);
+						// console.log('判断当前的是不是状态string：',res.data[0].status,typeof res.data[0].status);
+
+						that.status = res.data[0].status
 						// 保存mysql 中用户的数据
 						that.saveUsuerInfoMysql(res.data[0])
 					},
